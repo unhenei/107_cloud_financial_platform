@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>雲端金融帳戶服務</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+	<div id="mainPageBtn">
+		<button data-bs-toggle="modal" data-bs-target="#adminLoginModal">管理者</button>			
+		<button data-bs-toggle="modal" data-bs-target="#userLoginModal">使用者</button>
+	</div>
+
+	<!--  管理者登入表格 -->
+	<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+			  <div class="modal-header">
+			    <h5 class="modal-title">管理者登入</h5>
+			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+			    <form id="adminLoginForm">
+		          <div class="mb-3">
+		            <label for="adminAccount" class="col-form-label">帳號：</label>
+		            <input type="text" class="form-control" id="adminAccount">
+		          </div>
+		          <div class="mb-3">
+		            <label for="adminPassword" class="col-form-label">密碼：</label>
+		            <input type="text" class="form-control" id="adminPassword">
+		          </div>
+		        </form>
+			  </div>
+			  <div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+			    <button type="button" class="btn btn-primary" onclick="adminLogin()">登入</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<!--  使用者登入表格 -->
+	<div class="modal fade" id="userLoginModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+			  <div class="modal-header">
+			    <h5 class="modal-title">使用者登入</h5>
+			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+			    <form id="userLoginForm">
+		          <div class="mb-3">
+		            <label for="userAccount" class="col-form-label">帳號：</label>
+		            <input type="text" class="form-control" id="userAccount">
+		          </div>
+		          <div class="mb-3">
+		            <label for="userPassword" class="col-form-label">密碼：</label>
+		            <input type="text" class="form-control" id="userPassword">
+		          </div>
+		        </form>
+			  </div>
+			  <div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+			    <button type="button" class="btn btn-primary" onclick="userLogin()">登入</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 管理者操作介面 -->
+	<div id="adminDashboard" style="display: none">
+		<div>
+			<button data-bs-toggle="modal" data-bs-target="#createAccountModal">新增帳號與密碼</button>
+			<button data-bs-toggle="modal" data-bs-target="#depositModal">增加帳號存款</button>
+			<button data-bs-toggle="modal" data-bs-target="#resetAccountModal">重置帳號密碼</button>
+			<button onclick="adminHistory()" >查詢帳號歷史交易</button>
+		</div>
+		<div id="adminHistory" style="display: none">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Event</th>
+						<th>Timestamp</th>
+					</tr>
+				</thead>
+				<tbody id="adminHistoryBody"></tbody>
+			</table>
+		</div>
+
+
+		<!--  新增帳號密碼 -->
+		<div class="modal fade" id="createAccountModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">新增帳號與密碼</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <form id="createAccountForm">
+			          <div class="mb-3">
+			            <label for="newAccount" class="col-form-label">帳號：</label>
+			            <input type="text" class="form-control" id="newAccount">
+			          </div>
+			          <div class="mb-3">
+			            <label for="newPassword" class="col-form-label">密碼：</label>
+			            <input type="text" class="form-control" id="newPassword">
+			          </div>
+			        </form>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+				    <button type="button" class="btn btn-primary" onclick="createNewAccount()">建立帳戶</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<!--  增加帳號存款 -->
+		<div class="modal fade" id="depositModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">增加帳號存款</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <form id="depositForm">
+			          <div class="mb-3">
+			            <label for="depositAccount" class="col-form-label">帳號：</label>
+			            <input type="text" class="form-control" id="depositAccount">
+			          </div>
+			          <div class="mb-3">
+			            <label for="depositValue" class="col-form-label">新增金額：</label>
+			            <input type="text" class="form-control" id="depositValue">
+			          </div>
+			        </form>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+				    <button type="button" class="btn btn-primary" onclick="addDeposit()">確定</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<!--  重置帳號密碼 -->
+		<div class="modal fade" id="resetAccountModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">重置帳號密碼</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <form id="resetAccountForm">
+			          <div class="mb-3">
+			            <label for="resetAccount" class="col-form-label">帳號：</label>
+			            <input type="text" class="form-control" id="resetAccount">
+			          </div>
+			          <div class="mb-3">
+			            <label for="resetPassword" class="col-form-label">重置密碼：</label>
+			            <input type="text" class="form-control" id="resetPassword">
+			          </div>
+			        </form>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+				    <button type="button" class="btn btn-primary" onclick="resetAccount()">確定</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 使用者操作介面 -->
+	<div id="userDashboard" style="display: none">
+		<div>
+			<button data-bs-toggle="modal" data-bs-target="#lookupAccountBalanceModal" onclick="lookupDeposit()">查詢餘額</button>
+			<button data-bs-toggle="modal" data-bs-target="#transferModal">轉帳交易</button>
+			<button onclick="userHistory()">查詢帳號歷史交易</button>
+		</div>
+		<div id="userHistory" style="display: none">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Event</th>
+						<th>Timestamp</th>
+					</tr>
+				</thead>
+				<tbody id="userHistoryBody"></tbody>
+			</table>
+		</div>
+
+
+		<!--  查詢餘額 -->
+		<div class="modal fade" id="lookupAccountBalanceModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">查詢餘額</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <div>
+				    	帳戶餘額：
+				    	<span id="accountDeposit"></span>
+				    </div>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">確定</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<!--  轉帳交易 -->
+		<div class="modal fade" id="transferModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">轉帳交易</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <form id="transferForm">
+			          <div class="mb-3">
+			            <label for="transferAccount" class="col-form-label">轉入帳號：</label>
+			            <input type="text" class="form-control" id="transferAccount">
+			          </div>
+			          <div class="mb-3">
+			            <label for="transferValue" class="col-form-label">金額：</label>
+			            <input type="text" class="form-control" id="transferValue">
+			          </div>
+			        </form>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+				    <button type="button" class="btn btn-primary" onclick="transfer()">確定</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../public/script.js"></script>
+</body>
+</html>

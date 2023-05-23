@@ -1,0 +1,224 @@
+{
+  "users": [
+    {
+      "account": "admin",
+      "password": "3egreen"
+    },
+    {
+      "account": "user0001",
+      "password": "test",
+      "deposit": 28970,
+      "loginError": 1
+    },
+    {
+      "account": "user0002",
+      "password": "a222222",
+      "deposit": 17700,
+      "loginError": 1
+    },
+    {
+      "account": "user0003",
+      "password": "33333",
+      "deposit": 12910,
+      "loginError": 0
+    },
+    {
+      "account": "user0004",
+      "password": "a444444",
+      "deposit": 10110,
+      "loginError": 0
+    },
+    {
+      "account": "user0005",
+      "password": "a555555",
+      "deposit": 101600,
+      "loginError": 3
+    },
+    {
+      "account": "user0006",
+      "password": "0006",
+      "deposit": 90,
+      "loginError": 1
+    }
+  ],
+  "history": {
+    "admin": [
+      {
+        "event": "createAccount: Error (Account already exists)",
+        "timestamp": "2023/5/22 下午8:45:37"
+      },
+      {
+        "event": "createAccount: Create new accoount user0009",
+        "timestamp": "2023/5/22 下午8:45:44"
+      },
+      {
+        "event": "login",
+        "timestamp": "2023/5/22 下午11:45:54"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:45:56"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:45:56"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:45:57"
+      }
+    ],
+    "user0002": [
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午10:36:52"
+      },
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午10:37:25"
+      },
+      {
+        "event": "transfer: transfer 2000 to user0003",
+        "timestamp": "2023/5/22 下午10:43:46"
+      },
+      {
+        "event": "transfer: Error (Unqualified)",
+        "timestamp": "2023/5/22 下午10:43:51"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:07:03"
+      },
+      {
+        "event": "transfer: transfer 100 to user0004",
+        "timestamp": "2023/5/22 下午11:11:55"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:11:58"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:13:09"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:13:11"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:13:58"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:14:01"
+      },
+      {
+        "event": "transfer: Error (Account not found)",
+        "timestamp": "2023/5/22 下午11:14:12"
+      },
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午11:14:19"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:14:23"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:14:31"
+      },
+      {
+        "event": "login",
+        "timestamp": "2023/5/23 上午12:14:35"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/23 上午12:14:37"
+      }
+    ],
+    "user0001": [
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午10:56:48"
+      },
+      {
+        "event": "transfer: transfer 10 to user0004",
+        "timestamp": "2023/5/22 下午10:57:13"
+      },
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午10:57:22"
+      },
+      {
+        "event": "transfer: transfer 100 to user0006",
+        "timestamp": "2023/5/22 下午10:57:30"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午10:57:33"
+      },
+      {
+        "event": "transfer: Error (Account not found)",
+        "timestamp": "2023/5/22 下午11:19:31"
+      },
+      {
+        "event": "transfer: transfer 10 to user0001",
+        "timestamp": "2023/5/22 下午11:19:40"
+      },
+      {
+        "event": "transfer: transfer 10 to user0003",
+        "timestamp": "2023/5/22 下午11:19:46"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:48:29"
+      },
+      {
+        "event": "login",
+        "timestamp": "2023/5/22 下午11:59:06"
+      },
+      {
+        "event": "resetAccount: Reset password by admin",
+        "timestamp": "2023/5/23 上午12:12:58"
+      },
+      {
+        "event": "login",
+        "timestamp": "2023/5/23 上午12:13:06"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/23 上午12:13:08"
+      }
+    ],
+    "user0003": [
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午11:22:18"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:22:23"
+      },
+      {
+        "event": "lookupDeposit",
+        "timestamp": "2023/5/22 下午11:32:02"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:32:05"
+      }
+    ],
+    "user0005": [
+      {
+        "event": "login",
+        "timestamp": "2023/5/22 下午11:32:22"
+      },
+      {
+        "event": "lookupHistory",
+        "timestamp": "2023/5/22 下午11:32:24"
+      }
+    ]
+  }
+}
